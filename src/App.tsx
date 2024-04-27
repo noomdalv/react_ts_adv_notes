@@ -45,19 +45,34 @@ function App() {
   }, [notes, tags]);
 
   const onCreateNote = ({ tags, ...data }: NoteData) => {
-    setNotes((prevNotes) => {
-      return [
-        ...prevNotes,
-        { ...data, id: uuidV4(), tagIds: tags.map((tag) => tag.id) },
-      ];
-    });
+    const newNote = {
+      ...data,
+      id: uuidV4(),
+      tagIds: tags.map((tag) => tag.id),
+    };
+    setNotes((prevNotes) => [...prevNotes, newNote]);
   };
 
+  const addTag = (tag: Tag) => {
+    setTags((prevTags) => [...prevTags, tag]);
+    console.log("addTag", tag);
+  };
+  console.log("tags", tags);
+  console.log("notes", notes);
   return (
     <Container className="my-4">
       <Routes>
         <Route path="/" element={<h1>Home</h1>} />
-        <Route path="/new" element={<NewNote onSubmit={onCreateNote} />} />
+        <Route
+          path="/new"
+          element={
+            <NewNote
+              onSubmit={onCreateNote}
+              onAddTag={addTag}
+              availableTags={tags}
+            />
+          }
+        />
         <Route path="/about" element={<h1>About</h1>} />
         <Route path="/:id">
           <Route index element={<h1>Profile</h1>} />

@@ -2,11 +2,20 @@ import { useRef, useState } from "react";
 import { Button, Col, Form, Row, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CreatableSelect from "react-select/creatable";
-import { Note, NoteData, Tag } from "./App";
+import { NoteData, Tag } from "./App";
+import { v4 as uuidv4 } from "uuid";
 
-type NoteFormProps = { onSubmit: (note: NoteData) => void };
+type NoteFormProps = {
+  onSubmit: (note: NoteData) => void;
+  onAddTag: (tag: Tag) => void;
+  availableTags: Tag[];
+};
 
-export default function NoteForm({ onSubmit }: NoteFormProps) {
+export default function NoteForm({
+  onSubmit,
+  onAddTag,
+  availableTags,
+}: NoteFormProps) {
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
@@ -17,12 +26,13 @@ export default function NoteForm({ onSubmit }: NoteFormProps) {
     onSubmit({
       title: titleRef.current!.value,
       markdown: markdownRef.current!.value,
-      tags: [],
+      tags: selectedTags,
     });
+    console.log("submit", titleRef.current!.value, markdownRef.current!.value);
   };
 
   return (
-    <Form>
+    <Form onSubmit={(event) => handleSubmit(event)}>
       <Stack gap={4}>
         <Row>
           <Col>
@@ -39,11 +49,18 @@ export default function NoteForm({ onSubmit }: NoteFormProps) {
                 value={selectedTags.map((tag) => {
                   return { label: tag.label, value: tag.id };
                 })}
+                onCreateOption={(label) => {
+                  const newTag = { label, id: uuidv4() };
+                  onAddTag(newTag);
+                  setSelectedTags([...selectedTags, newTag]);
+                }}
+                options={availableTags.map((tag) => ({
+                  label: tag.label,
+                  value: tag.id,
+                }))}
                 onChange={(tags) =>
                   setSelectedTags(
-                    tags.map((tag) => {
-                      return { label: tag.label, id: tag.value };
-                    })
+                    tags.map((tag) => ({ label: tag.label, id: tag.value }))
                   )
                 }
                 isMulti
