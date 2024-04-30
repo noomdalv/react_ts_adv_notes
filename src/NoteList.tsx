@@ -78,7 +78,7 @@ function NoteList({ availableTags, notes }: NoteListProps) {
       <Row xs={1} md={2} lg={3} xl={4} className="g-4">
         {filteredNotes.map((note) => (
           <Col key={note.id}>
-            <NoteCard note={note} />
+            <NoteCard id={note.id} title={note.title} tags={note.tags} />
           </Col>
         ))}
       </Row>
