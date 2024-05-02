@@ -46,7 +46,7 @@ function NoteList({
     <>
       <Row className="align-items-center mb-4">
         <Col>
-          <h1>Notes</h1>
+          <h1 className="kanit-medium fs-1">Notes</h1>
         </Col>
         <Col xs="auto">
           <Stack direction="horizontal" gap={2}>
@@ -63,7 +63,7 @@ function NoteList({
         </Col>
       </Row>
       <Form>
-        <Row className="mb-4">
+        <Row className="mb-4 kanit-light">
           <Col>
             <Form.Group>
               <Form.Label>Title</Form.Label>

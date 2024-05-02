@@ -16,7 +16,7 @@ function NoteCard({ id, title, tags }: NoteCardProps) {
       to={`/${id}`}
       className={`h-100 text-reset text-decoration-none ${styles.card}`}
     >
-      <Card.Body>
+      <Card.Body className="ibm-plex-sans-medium">
         <Stack
           gap={2}
           className="align-items-center justify-content-center h-100"

@@ -15,11 +15,11 @@ export function Note({ onDelete }: NoteProps) {
     <>
       <Row className="align-items-center mb-4">
         <Col>
-          <h1>{note.title}</h1>
+          <h1 className="mb-2">{note.title}</h1>
           {note.tags.length > 0 && (
             <Stack gap={1} direction="horizontal" className="flex-wrap">
               {note.tags.map((tag) => (
-                <Badge className="text-truncate" key={tag.id}>
+                <Badge className="text-truncate" key={tag.id} bg="success">
                   {tag.label}
                 </Badge>
               ))}
@@ -46,7 +46,9 @@ export function Note({ onDelete }: NoteProps) {
           </Stack>
         </Col>
       </Row>
-      <Markdown>{note.markdown}</Markdown>
+      <Markdown className="ibm-plex-sans-regular fs-4">
+        {note.markdown}
+      </Markdown>
     </>
   );
 }

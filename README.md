@@ -1,30 +1,27 @@
-# React + TypeScript + Vite
+# Note Storage App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This application is a simple note storage system built with React and TypeScript. Each note in the system has a title containing a body and tags, uses search functionality to filter notes by title/tags and react-markdown which supports markdown syntax for rich text formatting. The application uses local storage to persist notes between sessions.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Create Notes**: Users can create new notes with a title, description, and markdown content.
+- **Edit Notes**: Existing notes can be edited. The changes are saved to local storage.
+- **Delete Notes**: Users can delete notes. The deletion is reflected in local storage.
+- **Markdown Support**: The application supports markdown syntax for note content. This allows users to format their notes with headers, bold text, links, and other markdown features.
+- **Tagging**: Each note can be associated with multiple tags for easy categorization and retrieval.
 
-## Expanding the ESLint configuration
+![screenshot](./src/assets/ss1.png)
+![screenshot](./src/assets/ss2.png)
+![screenshot](./src/assets/ss3.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Special mention to @WebDevSimplified and his guide which this project was based from.
 
-- Configure the top-level `parserOptions` property like this:
+## Running the App
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+To run the application, first install the dependencies with `npm install`, then start the development server with `npm start`.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Building the App
+
+To build the application for production, run `npm run build`.
+
+Please refer to the individual files for more detailed information about each component.
